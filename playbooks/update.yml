@@ -1,0 +1,12 @@
+--- 
+  - name: Update # sets the name of the whole playbook
+    hosts: all # sets all of the hosts to have this change made
+    become: yes # sets the need to become a root user
+    tasks: 
+      - name: Pre-Test # Sets a name for a task
+        debug:
+          msg: This is a function test # This is msg displayed is the playbook function (at least from any critical disfunction) 
+      - name: Update # Sets a name for the task
+        apt: # calls on the apt module
+          update_cache: yes # updates the cache of the server
+          upgrade: yes # updates and upgrades all the modules of the server
