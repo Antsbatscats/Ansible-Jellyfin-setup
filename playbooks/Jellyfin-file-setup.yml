@@ -21,12 +21,6 @@
         state: directory
         mode: '0777'
       
-      - name: Mkdir Cache # Makes a directory called cache within jellyfin
-        ansible.builtin.file: 
-          path: /home/Jellyfin/Cache
-          state: directory
-          mode: '0777'
-      
       - name: Mkdir Books # Makes a directory called books within media folder in the jellyfin folder
         ansible.builtin.file: 
           path: /home/Jellyfin/Media/Books
