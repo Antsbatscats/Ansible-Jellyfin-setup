@@ -13,7 +13,7 @@
           upgrade: yes
         when: ansible_distribution == "debian"
 
-      - name: Install Dependancies
+      - name: Install Dependancies/Necessay to configure packages
         apt: 
           name: "{{ packages }}"
           state: present
@@ -25,6 +25,7 @@
             - curl 
             - software-properties-common
             - gnupg-agent
+            - ufw 
         when: ansible_distribution == "debian"
       
       - name: Add an apt signing key for Docker
