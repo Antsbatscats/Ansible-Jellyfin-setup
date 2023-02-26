@@ -8,5 +8,6 @@
           msg: This is a function test # This is msg displayed is the playbook function (at least from any critical disfunction) 
       - name: Update # Sets a name for the task
         apt: # calls on the apt module
-          update_cache: yes # updates the cache of the server
+          update_cache: yes # updates the apt cache
           upgrade: yes # updates and upgrades all the modules of the server
+        when: ansible_distirbution == "Debian"
