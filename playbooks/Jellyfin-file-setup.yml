@@ -1,51 +1,51 @@
 ---
-  - name: Jellyfin Folders Setup
-    hosts: all
-    become: no 
+  - name: Jellyfin Folders Setup # Sets name of playbook
+    hosts: server1 # only for server1
+    become: no # root user is not used
     tasks: 
-      - name: Mkdir Jellyfin
+      - name: Mkdir Jellyfin # Makes a directory called jellyfin
         ansible.builtin.file: 
           path: /home/Jellyfin
           state: directory
           mode: '0777'
       
-      - name: Mkdir Media
+      - name: Mkdir Media # Makes a directory called media within jellyfin
         ansible.builtin.file: 
-          path: /home/Jellyfin/Media
+          path: /home/Jellyfin/Media 
           state: directory
           mode: '0777'
       
-      - name: Mkdir Config
+      - name: Mkdir Config # Makes a directory called config within jellyfin
        ansible.builtin.file: 
         path: /home/Jellyfin/Config
         state: directory
         mode: '0777'
       
-      - name: Mkdir Cache
+      - name: Mkdir Cache # Makes a directory called cache within jellyfin
         ansible.builtin.file: 
           path: /home/Jellyfin/Cache
           state: directory
           mode: '0777'
       
-      - name: Mkdir Books
+      - name: Mkdir Books # Makes a directory called books within media folder in the jellyfin folder
         ansible.builtin.file: 
           path: /home/Jellyfin/Media/Books
           state: directory
           mode: '0777' 
       
-      - name: Mkdir Movies
+      - name: Mkdir Movies # Makes a directory called movies within media folder in the jellyfin folder
         ansible.builtin.file: 
           path: /home/Jellyfin/Media/Movies
           state: directory
           mode: '0777'
       
-      - name: Mkdir Photos
+      - name: Mkdir Photos # Makes a directory called photos within media folder in the jellyfin folder
         ansible.builtin.file: 
           path: /home/Jellyfin/Media/Photos
           state: directory
           mode: '0777'
       
-      - name: Mkdir Videos
+      - name: Mkdir Videos # Makes a directory called videos within media folder in the jellyfin folder
         ansible.builtin.file: 
           path: /home/Jellyfin/Media/Videos
           state: directory
