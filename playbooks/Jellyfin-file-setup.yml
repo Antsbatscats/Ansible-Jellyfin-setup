@@ -1,0 +1,52 @@
+---
+  - name: Jellyfin Folders Setup
+    hosts: all
+    become: no 
+    tasks: 
+      - name: Mkdir Jellyfin
+        ansible.builtin.file: 
+          path: /home/Jellyfin
+          state: directory
+          mode: '0777'
+      
+      - name: Mkdir Media
+        ansible.builtin.file: 
+          path: /home/Jellyfin/Media
+          state: directory
+          mode: '0777'
+      
+      - name: Mkdir Config
+       ansible.builtin.file: 
+        path: /home/Jellyfin/Config
+        state: directory
+        mode: '0777'
+      
+      - name: Mkdir Cache
+        ansible.builtin.file: 
+          path: /home/Jellyfin/Cache
+          state: directory
+          mode: '0777'
+      
+      - name: Mkdir Books
+        ansible.builtin.file: 
+          path: /home/Jellyfin/Media/Books
+          state: directory
+          mode: '0777' 
+      
+      - name: Mkdir Movies
+        ansible.builtin.file: 
+          path: /home/Jellyfin/Media/Movies
+          state: directory
+          mode: '0777'
+      
+      - name: Mkdir Photos
+        ansible.builtin.file: 
+          path: /home/Jellyfin/Media/Photos
+          state: directory
+          mode: '0777'
+      
+      - name: Mkdir Videos
+        ansible.builtin.file: 
+          path: /home/Jellyfin/Media/Videos
+          state: directory
+          mode: '0777'
