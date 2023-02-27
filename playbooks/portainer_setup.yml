@@ -1,7 +1,7 @@
 --- 
    - name: Setup portainer
      hosts: all
-     become: no
+     become: yes
      tasks: 
 
       - name: Deploy Portainer
