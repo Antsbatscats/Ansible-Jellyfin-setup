@@ -1,0 +1,49 @@
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: Deploy Portainer
+      community.docker.docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        ports:
+          - "9000:9000"
+          - "8000:8000"
+          - "9443:9443"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - portainer_data:/data
+        restart_policy: always
+    
+    - name: Install UFW
+        apt: 
+           name: "ufw"
+           state: latest
+    
+     - name: Open Jellyfin port 8000
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "8000"
+          proto: tcp
+      
+      - name: Open Jellyfin port 9000
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "9000"
+          proto: tcp
+      
+      - name: Open Jellyfin port 9000
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "9000"
+          proto: tcp
+      
+      - name: Open SSH port (incase of malfunction)
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "22"
+          proto: tcp

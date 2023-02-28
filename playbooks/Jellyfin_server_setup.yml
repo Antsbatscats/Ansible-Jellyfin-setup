@@ -1,0 +1,63 @@
+--- 
+  - name: Setup Jellyfin
+    hosts: all
+    become: yes
+    tasks:
+      - name: Deploy Jellyfin
+        docker_container:  
+          name: Jellyfin1
+          image: linuxserver/jellyfin:latest
+          restart_policy: "unless-stopped"
+          restart: yes
+          networks: 
+            - name: "bridge"
+          ports: 
+            - "1900:1900/udp"
+            - "7359:7359/udp"
+            - "8096:8096/tcp"
+            - "8920:8920/tcp"
+          env: 
+            PGID: "1000"
+            PUID: "1000"
+            TZ: "Europe/London"
+          volumes: 
+            - /home/Jellyfin/Media/Movies:/data/movies
+            - /home/Jellyfin/Media/Books:/data/books
+            - /home/Jellyfin/Media/Videos:/data/videos
+            - /home/Jellyfin/Media/Photos:/data/photos
+            - /home/Jellyfin/Config:/config
+
+      - name: Open Jellyfin port 1900
+        ufw:
+          state: enabled
+          rule: allow
+          port: "1900"
+          proto: udp
+      
+      - name: Open Jellyfin port 7359
+        ufw:
+          state: enabled
+          rule: allow
+          port: "7359"
+          proto: udp
+      
+      - name: Open Jellyfin port 8099
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "8096"
+          proto: tcp
+      
+      - name: Open Jellyfin port 8920
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "8920"
+          proto: tcp
+      
+      - name: Open SSH port (incase of malfunction)
+        ufw: 
+          state: enabled
+          rule: allow
+          port: "22"
+          proto: tcp
